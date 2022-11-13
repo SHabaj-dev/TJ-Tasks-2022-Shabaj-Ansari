@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     final String[] gender = {"Male",
                             "Female",
-                            "Transgender"};
+                            "Others"};
     String gndr;
     private FirebaseAuth mFirebaseAuth;
     private ProgressBar mProgressbar;
