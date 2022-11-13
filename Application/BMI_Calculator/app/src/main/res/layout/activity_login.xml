@@ -9,11 +9,17 @@
     android:orientation="vertical"
     tools:context=".Login">
 
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:src="@drawable/login_logo"/>
+
+
 
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/berlings"
         android:text="@string/log_in"
         android:textAlignment="center"
@@ -48,6 +54,8 @@
         android:layout_marginTop="32dp"
         android:hint="@string/password"
         android:textColorHint="@color/black"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/black"
         app:boxStrokeColor="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +64,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/rostemary"
             android:textStyle="bold"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:singleLine="true"
             android:textColor="@color/black" />
 
@@ -100,5 +108,12 @@
         
         
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loginProgressbar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:indeterminateTint="@color/black"
+        android:visibility="gone"/>
 
 </LinearLayout>

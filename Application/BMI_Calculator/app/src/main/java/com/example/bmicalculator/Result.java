@@ -15,13 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.DecimalFormat;
 
 public class Result extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
-
+    private FirebaseUser user;
+    private LinearLayout linearLayout, headerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,24 +32,21 @@ public class Result extends AppCompatActivity {
         final TextView hiName = findViewById(R.id.hiName);
         final TextView bmi = findViewById(R.id.bmi);
         final TextView category = findViewById(R.id.category);
-        final LinearLayout linearLayout = findViewById(R.id.l1V1);
+        linearLayout = findViewById(R.id.l1V1);
         final ImageView backBtn = findViewById(R.id.backBtn);
         final AppCompatButton logoutBtn = findViewById(R.id.logoutBtn);
-        final LinearLayout headerLayout = findViewById(R.id.topBar);
+        headerLayout = findViewById(R.id.topBar);
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
         Intent intent = getIntent();
-
-        final String name = intent.getStringExtra("name");
-        final String age = intent.getStringExtra("age");
         final String height = intent.getStringExtra("height");
         final String weight = intent.getStringExtra("weight");
         final String gender = intent.getStringExtra("gender");
+        String name = getUserName();
 
 
 
-        Integer intAge = Integer.parseInt(age);
         Float floatHeight = Float.parseFloat(height);
         Float floatWeight = Float.parseFloat(weight);
 
@@ -79,36 +78,7 @@ public class Result extends AppCompatActivity {
             category.setText("Obese Class 1");
 
         }
-
-        if(gender.equals("Male")){
-
-            if (Build.VERSION.SDK_INT >= 21) {
-                Window window = this.getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.setStatusBarColor(this.getResources().getColor(R.color.male));
-            }
-            linearLayout.setBackgroundResource(R.color.male);
-            headerLayout.setBackgroundResource(R.drawable.male_bg);
-        }else if(gender.equals("Female")){
-            if (Build.VERSION.SDK_INT >= 21) {
-                Window window = this.getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.setStatusBarColor(this.getResources().getColor(R.color.female));
-            }
-            linearLayout.setBackgroundResource(R.color.female);
-            headerLayout.setBackgroundResource(R.drawable.female_bg);
-        }else{
-            if (Build.VERSION.SDK_INT >= 21) {
-                Window window = this.getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.setStatusBarColor(this.getResources().getColor(R.color.male));
-            }
-            linearLayout.setBackgroundResource(R.drawable.other_flag);
-            headerLayout.setBackgroundResource(R.drawable.trans_background);
-        }
+        setBackgroundColor(gender);
 
 
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -128,5 +98,40 @@ public class Result extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setBackgroundColor(String gender) {
+        if(gender.equals("Male")){
+
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.male));
+            linearLayout.setBackgroundResource(R.color.male);
+            headerLayout.setBackgroundResource(R.color.male);
+        }else if(gender.equals("Female")){
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.female));
+            linearLayout.setBackgroundResource(R.color.female);
+            headerLayout.setBackgroundResource(R.color.female);
+        }else{
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.male));
+            linearLayout.setBackgroundResource(R.drawable.other_flag);
+            headerLayout.setBackgroundResource(R.color.male);
+        }
+    }
+
+    private String getUserName() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            return user.getDisplayName();
+        }
+
+        return " ";
     }
 }
