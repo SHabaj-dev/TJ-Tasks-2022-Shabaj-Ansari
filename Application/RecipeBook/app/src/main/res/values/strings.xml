@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Recipe Book</string>
+    <string name="title">Title</string>
+    <string name="dummy_text">Dummy Text</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="time_required">Time Required : </string>
+    <string name="_50">50</string>
+    <string name="chicken_1kg">- 600 gm chicken</string>
+    <string name="rice">- 1 cup boiled basmati rice</string>
+    <string name="Salt">- salt as required</string>
+    <string name="onions">- Onions</string>
+    <string name="water">- water as required</string>
+</resources>

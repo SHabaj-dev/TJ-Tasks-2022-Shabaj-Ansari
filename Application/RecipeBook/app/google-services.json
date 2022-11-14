@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1003232592512",
+    "project_id": "recipie-207cc",
+    "storage_bucket": "recipie-207cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003232592512:android:a2be5cb96fceb43e789c65",
+        "android_client_info": {
+          "package_name": "com.example.recipebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003232592512-26vrlipedjn1b2t90qlsl7bfh5upsaa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvmD3okZZaIpIbTeT9gkcapxAfnZva0TQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003232592512-26vrlipedjn1b2t90qlsl7bfh5upsaa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
